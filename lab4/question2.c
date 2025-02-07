@@ -11,6 +11,8 @@ void compute_checksum(char *filename) {
         exit(1); // just exits the program
     }
     if (pid == 0) {
+        printf("MD5 (%s)\n", filename);   // formatting for the output of checksum
+        fflush(stdout);
         execlp("md5sum", "md5sum", filename, NULL); // runs md5sum command on inputted file
         perror("execlp failed"); // outputs an error message as to why execl fails
         exit(1);
@@ -20,20 +22,20 @@ void compute_checksum(char *filename) {
 }
 
 void copy_file(char *source, char *dest) {
-  FILE *sourceFile = fopen(source, "rb");
+  FILE *sourceFile = fopen(source, "rb");   // our source file is in read binary mode
   if (!sourceFile) {
     perror("Error opening source file");
     exit(1);
   }
-  FILE *destFile = fopen(dest, "wb");
+  FILE *destFile = fopen(dest, "wb");       // our destination file is in write binary mode
   if (!destFile) {
     perror("Error opening destination file");
     exit(1);
   }
 
   int ch;
-  while((ch = fgetc(sourceFile)) != EOF) {
-    fputc(ch, destFile);
+  while((ch = fgetc(sourceFile)) != EOF) {  // this reads all characters in our source file until end of file
+    fputc(ch, destFile);                    // this puts all the characters we read into the destination file
   }
 
   fclose(sourceFile);
@@ -48,10 +50,8 @@ int main(int argc, char *argv[]) {
     }
 
     copy_file(argv[1], argv[2]);
-    printf("Source file checksum = ");
+
     compute_checksum(argv[1]);
-    printf("\n");
-    printf("Destination file checksum = ");
     compute_checksum(argv[2]);
 
     return 0;
