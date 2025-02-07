@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     printf("Child %d:\n", getpid());  // child prints out its process id
     fflush(stdout);                          // ensure that the output of our file is printed before executing
     execl(argv[1], argv[1], NULL); // child takes in executable and executes
-    perror("execl failed"); // outputs an error message in case execl fails
+    perror("execl failed"); // outputs an error message as to why execl fails
     exit(1);  // just exits the program
   } else {
     wait(NULL); // for the parent to terminate only after the child process
