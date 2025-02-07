@@ -11,7 +11,7 @@ void compute_checksum(char *filename) {
         exit(1); // just exits the program
     }
     if (pid == 0) {
-        printf("MD5 (%s)\n", filename);   // formatting for the output of checksum
+        printf("MD5 (%s) = ", filename);   // formatting for the output of checksum
         fflush(stdout);
         execlp("md5sum", "md5sum", filename, NULL); // runs md5sum command on inputted file
         perror("execlp failed"); // outputs an error message as to why execl fails
