@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   if (pid == 0) {
-    printf("Child %d:\n". getpid());
+    printf("Child %d:\n", getpid());
     fflush(stdout);
     execl(argv[1], argv[1], NULL);
     perror("execl failed");
