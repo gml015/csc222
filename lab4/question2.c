@@ -31,8 +31,9 @@ void copy_file(char *source, char *dest) {
     exit(1);
   }
 
-  while(fgetc(sourceFile) != EOF) {
-    fputc(fgetc(sourceFile), destFile);
+  int ch;
+  while((ch = fgetc(sourceFile)) != EOF) {
+    fputc(ch, destFile);
   }
 
   fclose(sourceFile);
@@ -49,6 +50,7 @@ int main(int argc, char *argv[]) {
     copy_file(argv[1], argv[2]);
     printf("Source file checksum = ");
     compute_checksum(argv[1]);
+    printf("\n");
     printf("Destination file checksum = ");
     compute_checksum(argv[2]);
 
