@@ -37,6 +37,24 @@ void executeCommand(char **args) {
     }
 }
 
+void changeDirectory(char **args) {
+    if (args[1] == NULL) {
+        // if there is no argument for cd, go home
+        char *home = getenv("HOME");
+        if (home == NULL) {
+            perror("Environment variable HOME not set");
+        } else if (chdir(home) != 0) {
+            perror("Error changing directory");
+        }
+        else {
+            // change to proper directory
+            if (chdir(args[1]) != 0) {
+                perror("Error changing directory");
+            }
+        }
+    }
+}
+
 
 
 int main() {
@@ -58,14 +76,21 @@ int main() {
         // remove newline char from input
         input[strcspn(input, "\n")] = 0;
 
-        // if the user inputs exit
-        if (strcmp(input, "exit") == 0) {
-            return 0;
-        }
 
         tokenizeInput(input, args);
 
-        if (args[0] != NULL) {
+        // ignore empty input
+        if (args[0] == NULL) {
+            continue;
+        }
+        // if input is "exit", program ends
+        if (strcmp(args[0], "exit") == 0) {
+            return 0;
+        // if input is "cd", parse arguments through changeDirectory() function
+        } else if (strcmp(args[0], "cd") == 0) {
+            changeDirectory(args);
+        // if input is a valid command, arguments are passed through executeCommand() function
+        } else {
             executeCommand(args);
         }
     }
