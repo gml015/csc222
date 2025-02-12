@@ -43,15 +43,14 @@ void changeDirectory(char **args) {
         char *home = getenv("HOME");
         if (home == NULL) {
             perror("Environment variable HOME not set");
-        } else if (chdir(home) != 0) {
+        }
+        if (chdir(home) != 0) {
             perror("Error changing directory");
         }
         else {
             // change to proper directory
             if (chdir(args[1]) != 0) {
                 perror("Error changing directory");
-            } else {
-                chdir(args[1]);
             }
         }
     }
@@ -64,6 +63,7 @@ int main() {
     char *args[MAX_ARGS];
 
     while (1) {
+
         char cwd[255];
         if (getcwd(cwd, sizeof(cwd)) != NULL) {
             printf("%s$ ", cwd);
@@ -85,6 +85,7 @@ int main() {
         if (args[0] == NULL) {
             continue;
         }
+
         // if input is "exit", program ends
         if (strcmp(args[0], "exit") == 0) {
             return 0;
