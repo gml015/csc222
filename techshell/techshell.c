@@ -37,11 +37,6 @@ void executeCommand(char **args) {
     }
 }
 
-void printWorkingDirectory () {
-    char cwd[1024];
-    getcwd(cwd, sizeof(cwd));
-    printf("\n%s\n", cwd);
-}
 
 
 int main() {
@@ -49,7 +44,13 @@ int main() {
     char *args[MAX_ARGS];
 
     while (1) {
-        printf("$ ");
+        char cwd[255];
+        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+            printf("%s$ ", cwd);
+        } else {
+            perror("getcwd failed");
+        }
+
         if (fgets(input, sizeof(input), stdin) == NULL) {
             break;  // this handles EOF
         }
