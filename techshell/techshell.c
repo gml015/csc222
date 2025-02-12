@@ -50,7 +50,8 @@ void changeDirectory(char **args) {
             // change to proper directory
             if (chdir(args[1]) != 0) {
                 perror("Error changing directory");
-            }
+            } else {
+                chdir(args[1]);
         }
     }
 }
