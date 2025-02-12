@@ -39,22 +39,21 @@ void executeCommand(char **args) {
 
 void changeDirectory(char **args) {
     if (args[1] == NULL) {
-        // if there is no argument for cd, go home
         char *home = getenv("HOME");
         if (home == NULL) {
             perror("Environment variable HOME not set");
+            return;
         }
         if (chdir(home) != 0) {
             perror("Error changing directory");
         }
-        else {
-            // change to proper directory
-            if (chdir(args[1]) != 0) {
-                perror("Error changing directory");
-            }
+    } else {
+        if (chdir(args[1]) != 0) {
+            perror("Error changing directory");
         }
     }
 }
+
 
 
 
