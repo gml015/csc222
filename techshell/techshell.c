@@ -49,7 +49,7 @@ void executeCommand(char **args, char *inputFile, char *outputFile) {
         // handling input redirection (<)
         if (inputFile) {
             FILE* inFile = fopen(inputFile, "r");
-            if (inFile < 0) {
+            if (inFile == NULL) {
                 perror("Failed to open input file");
                 exit(1);
             }
@@ -59,8 +59,8 @@ void executeCommand(char **args, char *inputFile, char *outputFile) {
 
         // handling output redirection (>)
         if (outputFile) {
-            FILE* outfile = fopen(outputFile, "r");
-            if (outfile < 0) {
+            FILE* outfile = fopen(outputFile, "w");
+            if (outfile == NULL) {
                 perror("Failed to open output file");
                 exit(1);
             }
