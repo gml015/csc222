@@ -31,8 +31,8 @@ void tokenizeInput(char *input, char **args, char **inputFile, char **outputFile
         } else {
             args[i] = token;
             i++;
-            token = strtok(NULL, " ");
         }
+        token = strtok(NULL, " ");
     }
     args[i] = NULL;  // null-terminate the arguments array
 }
