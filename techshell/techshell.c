@@ -4,25 +4,28 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+#define MAX_ARGS 20
 
-#define MAX_ARGS 15
-
+// tokenizes user input - splits user's input into separate strings based on spaces
+// handles redirection characters
 void tokenizeInput(char *input, char **args, char **inputFile, char **outputFile) {
     char *token = strtok(input, " ");  // make tokens based on spaces
     int i = 0;
     *inputFile = NULL;
     *outputFile = NULL;
 
-    // while our token exists and we haven't reached 15 args
-    // we update the array with each arg passed through
-    while (token != NULL && i < MAX_ARGS - 1) {
+    // while valid tokens exist,
+    // we update the array with each arg/token passed through
+    while (token != NULL) {
 
         // input redirection (feed input from right into left; ex: greeting.c < name.txt)
+        // inputFile points to same string as this token
         if (strcmp(token, "<") == 0) {
             token = strtok(NULL, " ");
             if (token) { *inputFile = token; }
 
         // output redirection (feed input from left into right; ex: echo hi > hi.txt)
+        // outputFile points to same string as this token
         } else if (strcmp(token, ">") == 0) {
             token = strtok(NULL, " ");
             if (token) { *outputFile = token; }
@@ -34,9 +37,11 @@ void tokenizeInput(char *input, char **args, char **inputFile, char **outputFile
         }
         token = strtok(NULL, " ");
     }
-    args[i] = NULL;  // null-terminate the arguments array
+    args[i] = NULL;  // null-terminate the last index of args[] for execvp (requires NULL at the end)
 }
 
+// creates child process that is able to execute arguments by passing them through execvp
+// handles execution of i/o redirection and the process of reading/writing files
 void executeCommand(char **args, char *inputFile, char *outputFile) {
     pid_t pid = fork();  // create a child process
 
@@ -59,13 +64,13 @@ void executeCommand(char **args, char *inputFile, char *outputFile) {
 
         // handling output redirection (>)
         if (outputFile) {
-            FILE* outfile = fopen(outputFile, "w");
-            if (outfile == NULL) {
+            FILE* outFile = fopen(outputFile, "w");
+            if (outFile == NULL) {
                 perror("Failed to open output file");
                 exit(1);
             }
-            dup2(fileno(outfile), 1);
-            fclose(outfile);
+            dup2(fileno(outFile), 1);
+            fclose(outFile);
         }
 
         // execution for commands
@@ -79,6 +84,7 @@ void executeCommand(char **args, char *inputFile, char *outputFile) {
     }
 }
 
+// self-explanatory, handles cd; if no specific directory is listed, travels to home directory
 void changeDirectory(char **args) {
     // if the arg for cd is empty, we go to HOME
     if (args[1] == NULL) {
