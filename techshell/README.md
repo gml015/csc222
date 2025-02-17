@@ -1,6 +1,6 @@
 # Techshell 
 
-A C program that imitates simple functionality of a UNIX-based 
+A C program that imitates simple functionality of a UNIX-based terminal
 
 ***
 
