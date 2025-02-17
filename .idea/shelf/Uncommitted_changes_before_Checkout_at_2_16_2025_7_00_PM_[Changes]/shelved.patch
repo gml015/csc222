@@ -1,0 +1,16 @@
+Index: techshell/README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Techshell \r\n\r\nA C program that imitates simple functionality of a UNIX-based \r\n\r\n***\r\n\r\n**Garrett Lee King**\\\r\nCSC 222 - Systems Programming\r\n\r\n***\r\n\r\n## Description\r\n\r\n### **tokenizeInput()**\r\n- This function converts user input into tokens that \r\nare then stored into the array named ```args[]```.\r\n- This function also handles redirection by checking if a token is \r\na redirection character *(< or >)*, and then makes sure that\r\n```inputFile``` or ```outputFile``` points to the same character array\r\nas the following token. \r\n\r\n### **executeCommand()**\r\n- This function creates a child process that executes regular commands by passing in \r\nour arguments created by the ```tokenizeInput()``` function through ```execvp```.\r\n- This function also handles redirection by taking in ```inputFile``` or ```outputFile```\r\nif they exist and then either reading the file contents or creating a new file and passing them to \r\n```dup2()```, which handles redirecting input and output.\r\n\r\n### **changeDirectory()**\r\n- This function handles the ```cd``` command by passing the inputted directory through\r\nthe system call ```chdir()```.\r\n- If no specific directory is given, it travels to the home directory if it exists.\r\n\r\n### **main()**\r\n\r\n- Retrieves the current working directory by using ```getcwd()``` function and then \r\nformats so each line is ```(PATH)$```.\r\n- User input is taken through ```fgets()``` and then passed through ```tokenizeInput()```\r\n- Commands are handled sort of like Room Adventure; if the user inputs exit, ```arg[0]``` should be \"exit\" and \r\nthe program then knows to just ```return``` to close the program. \r\n- If the command is ```cd```, the program handles it\r\nby passing them through the ```changeDirectory()``` function. \r\n- All other commands are simply passed\r\nthrough ```executeCommand()``` in order to execute.\r\n\r\n## Usage\r\n\r\n
+===================================================================
+diff --git a/techshell/README.md b/techshell/README.md
+--- a/techshell/README.md	(revision 42956cb4b609f56517eaf5049e05064c9859c5c4)
++++ b/techshell/README.md	(date 1739753994679)
+@@ -1,6 +1,6 @@
+ # Techshell 
+ 
+-A C program that imitates simple functionality of a UNIX-based 
++A C program that imitates simple functionality of a UNIX-based terminal
+ 
+ ***
+ 
