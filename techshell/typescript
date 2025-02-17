@@ -1,0 +1,63 @@
+Script started on 2025-02-17 00:49:39+00:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="80" LINES="24"]
+[?2004h]0;leekinggm@kingserver: ~/Desktop/techshell/techshell[01;32mleekinggm@kingserver[00m:[01;34m~/Desktop/techshell/techshell[00m$ ./techshell 
+[?2004l/home/leekinggm/Desktop/techshell/techshell$ cd ..
+/home/leekinggm/Desktop/techshell$ pwd
+/home/leekinggm/Desktop/techshell
+/home/leekinggm/Desktop/techshell$ ls -lh     
+lab2.zip  lab4	techshell
+/home/leekinggm/Desktop/techshell$ cd techshell
+/home/leekinggm/Desktop/techshell/techshell$ ls -lh techsell.c]]]]           hshell.c
+-r-------- 1 leekinggm leekinggm 4.5K Feb 17 00:43 techshell.c
+/home/leekinggm/Desktop/techshell/techshell$ chmod 777 techshell.c
+/home/leekinggm/Desktop/techshell/techshell$ ls -h lh techshell.c
+-rwxrwxrwx 1 leekinggm leekinggm 4.5K Feb 17 00:43 techshell.c
+/home/leekinggm/Desktop/techshell/techshell$ ls /root
+ls: cannot open directory '/root': Permission denied
+/home/leekinggm/Desktop/techshell/techshell$ cd /root
+Error changing directory: Permission denied
+/home/leekinggm/Desktop/techshell/techshell$ horseface
+Error executing command: No such file or directory
+/home/leekinggm/Desktop/techshell/techshell$ ps
+    PID TTY          TIME CMD
+   5329 pts/3    00:00:00 bash
+   5337 pts/3    00:00:00 techshell
+   5355 pts/3    00:00:00 ps
+/home/leekinggm/Desktop/techshell/techshell$ where is    eis ps
+ps: /usr/bin/ps /usr/share/man/man1/ps.1.gz
+/home/leekinggm/Desktop/techshell/techshell$ /bin/ps u
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+leeking+    2050  0.0  0.1 233068  5888 tty2     Ssl+ Feb16   0:00 /usr/libexec/
+leeking+    2055  0.0  0.4 295608 16640 tty2     Sl+  Feb16   0:00 /usr/libexec/
+leeking+    2899  0.0  0.1   8796  5248 pts/0    Ss   Feb16   0:00 bash
+leeking+    5256  0.0  0.0   5704  2304 pts/0    S+   00:43   0:00 script
+leeking+    5257  0.0  0.1   8664  5376 pts/1    Ss   00:43   0:00 bash -i
+leeking+    5283  0.0  0.0   5704  2304 pts/1    S+   00:45   0:00 script
+leeking+    5284  0.0  0.1   8664  5376 pts/2    Ss   00:45   0:00 bash -i
+leeking+    5328  0.0  0.0   5704  2304 pts/2    S+   00:49   0:00 script
+leeking+    5329  0.0  0.1   8664  5376 pts/3    Ss   00:49   0:00 bash -i
+leeking+    5337  0.0  0.0   2680  1536 pts/3    S+   00:49   0:00 ./techshell
+leeking+    5357  0.0  0.1  11148  4736 pts/3    R+   00:51   0:00 /bin/ps u
+/home/leekinggm/Desktop/techshell/techshell$ ls
+README.md  techshell  techshell.c  typescript
+/home/leekinggm/Desktop/techshell/techshell$ cd
+/home/leekinggm$ ls
+Desktop    Downloads  Music	Public	Templates
+Documents  labs       Pictures	snap	Videos
+/home/leekinggm$ ps u > ps.out
+/home/leekinggm$ wc -l < ps.out
+12
+/home/leekinggm$ wc -l < ps.out > wc.out
+/home/leekinggm$ cat wc.out
+12
+/home/leekinggm$ ls
+Desktop    Downloads  Music	ps.out	snap	   Videos
+Documents  labs       Pictures	Public	Templates  wc.out
+/home/leekinggm$ rm ps.out wc.out
+/home/leekinggm$ ls
+Desktop    Downloads  Music	Public	Templates
+Documents  labs       Pictures	snap	Videos
+/home/leekinggm$ exit
+[?2004h]0;leekinggm@kingserver: ~/Desktop/techshell/techshell[01;32mleekinggm@kingserver[00m:[01;34m~/Desktop/techshell/techshell[00m$ exit
+[?2004lexit
+
+Script done on 2025-02-17 00:53:04+00:00 [COMMAND_EXIT_CODE="0"]
