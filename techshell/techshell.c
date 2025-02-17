@@ -51,12 +51,6 @@ void executeCommand(char **args, char *inputFile, char *outputFile) {
     } else if (pid == 0) {
         // child process
 
-        // execution for commands
-        if (execvp(args[0], args) == -1) {
-            perror("Error executing command");
-            exit(1);
-        }
-
         // handling input redirection (<)
         if (inputFile) {
             FILE* inFile = fopen(inputFile, "r");
@@ -77,6 +71,12 @@ void executeCommand(char **args, char *inputFile, char *outputFile) {
             }
             dup2(fileno(outFile), 1);
             fclose(outFile);
+        }
+
+        // execution for commands
+        if (execvp(args[0], args) == -1) {
+            perror("Error executing command");
+            exit(1);
         }
     } else {
         // parent process waits for the child
