@@ -2,12 +2,12 @@
 
 A C program that imitates simple functionality of a UNIX-based terminal
 
-***
+---
 
 **Garrett Lee King**\
 CSC 222 - Systems Programming
 
-***
+---
 
 ## Description
 
@@ -43,5 +43,17 @@ by passing them through the ```changeDirectory()``` function.
 - All other commands are simply passed
 through ```executeCommand()``` in order to execute.
 
+---
+
 ## Usage
 
+1. [x] Basic terminal commands (echo, cat, less, touch, etc...)
+2. [x] Directory traversal (cd)
+3. [x] I/O redirection (< and >)
+
+---
+
+## Known Bugs
+
+- A file will still be created during stdout (>) even if the command being outputted
+results in an error. 
